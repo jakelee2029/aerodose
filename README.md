@@ -1,6 +1,6 @@
 # AeroDose — Cosmic Ray Flight Radiation Estimator
 
-> **Congressional App Challenge 2026** · NY-06 (Grace Meng) · Built by Jake
+> **Congressional App Challenge 2026** · NY-06 (Grace Meng) · Built by Jake Lee
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-aerodose.vercel.app-38BDF8?style=flat-square)](https://aerodose.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-jakelee2029%2Faerodose-24292e?style=flat-square&logo=github)](https://github.com/jakelee2029/aerodose)
@@ -129,7 +129,6 @@ aerodose/
 │   ├── data/
 │   │   └── airports.js      # Airport database (IATA + coordinates)
 │   └── index.css            # Design tokens + component styles
-├── AI_USAGE_LOG.md          # AI disclosure (CAC requirement)
 └── vercel.json              # Deployment config
 ```
 
@@ -137,7 +136,7 @@ aerodose/
 
 ## 🤖 AI Disclosure
 
-This project was built with AI-assisted scaffolding (Antigravity IDE / Claude). See [AI_USAGE_LOG.md](AI_USAGE_LOG.md) for full disclosure, as required by Congressional App Challenge rules.
+This project was developed with AI assistance (code scaffolding, design iterations, and documentation) in accordance with Congressional App Challenge guidelines.
 
 ---
 
