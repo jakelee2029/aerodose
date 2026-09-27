@@ -1,8 +1,9 @@
-﻿# AeroDose — Cosmic Ray Flight Radiation Estimator
+# AeroDose — Cosmic Ray Flight Radiation Estimator
 
 > **Congressional App Challenge 2026** · NY-06 (Grace Meng) · Built by Jake
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-aerodose.vercel.app-38BDF8?style=flat-square)](https://aerodose.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-jakelee2029%2Faerodose-24292e?style=flat-square&logo=github)](https://github.com/jakelee2029/aerodose)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)](LICENSE)
 [![Built with Vite](https://img.shields.io/badge/Built%20with-Vite%208-F59E0B?style=flat-square)](https://vitejs.dev)
 
@@ -80,7 +81,7 @@ Congress mandates FAA tracking of aircrew radiation exposure under **14 CFR § 1
 ## 🚀 Running Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/aerodose.git
+git clone https://github.com/jakelee2029/aerodose.git
 cd aerodose
 npm install
 npm run dev
