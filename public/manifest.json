@@ -1,0 +1,16 @@
+{
+  "name": "AeroDose — Flight Radiation Estimator",
+  "short_name": "AeroDose",
+  "description": "Estimate cosmic ray radiation dose for any commercial flight using real FAA/ICRP physics models.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1120",
+  "theme_color": "#0F172A",
+  "orientation": "any",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["education", "medical", "utilities"],
+  "lang": "en-US"
+}
