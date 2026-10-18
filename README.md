@@ -17,19 +17,20 @@ Enter any origin and destination airport (IATA code or city name), set your crui
 
 | Output | Details |
 |---|---|
-| **Total effective dose** | µSv and mSv, with FAA CARI-7 ±15% uncertainty |
-| **Plain-language summary** | Banana equivalents 🍌, chest X-rays 🏥, background hours 🌍, % of annual limit 📋 |
+| **Total effective dose** | µSv and mSv for the whole flight, including climb and descent |
+| **Risk banner and comparison meter** | Plain-language verdict, with bananas, chest X-rays and the yearly public guideline on one scale |
 | **Dose rate profile chart** | µSv/hr vs. flight distance (nm) |
-| **Great-circle route map** | Color-coded blue→amber by dose rate intensity |
-| **Waypoint trajectory table** | Lat, lon, geomagnetic latitude, cutoff rigidity, atmospheric depth at each segment |
-| **Regulatory thresholds** | ICRP aircrew limit (20 mSv/yr), public limit (1 mSv/yr) |
-| **Physics methodology** | Full collapsible panel with equations, citations, and bibliography |
+| **Great-circle route map** | Route colored by dose rate (Viridis scale) with a numeric legend |
+| **Live solar activity** | Today's 10.7 cm solar flux from NOAA SWPC |
+| **Flights from my area** | Ranks popular trips from your nearest airport by dose |
+| **My year in the air** | A private running total against the 1 mSv yearly guideline (stored only in your browser) |
+| **Who flies? and Take action** | Example scenarios and a draft letter to a representative or airline |
 
 ---
 
 ## 🔬 Physics Model
 
-The dose calculation is an analytical parameterization of the **FAA CARI-7/7A** model, accurate to ±~15% of full Monte Carlo results.
+The dose calculation is a simplified analytical model inspired by the **FAA CARI-7/7A** program and **calibrated to CARI-7 results published by the FAA**. It is not CARI-7 itself (see Accuracy below).
 
 ### Key components:
 
@@ -44,6 +45,34 @@ D(h, λ, F₁₀.₇) = D₀(h) · f_lat(λ_geomag) · f_solar(F₁₀.₇)
 | **Solar modulation** `f_solar` | Linear GCR suppression with F10.7 flux | ICRP 132 §3.3 (2016) |
 | **Route integration** | 40-waypoint great-circle geodesic | Spherical earth, Haversine |
 | **Atmospheric depth** | US Standard Atmosphere 1976 | NOAA (1976) |
+
+### Accuracy (tested against the FAA's own CARI-7 results)
+
+FAA Advisory Circular 120-61B, Table 2 lists CARI-7 doses for 27 real nonstop flights (ICRU mean solar activity, quiet conditions). The data, source and assumptions are in `validation/cari7_reference.json`.
+
+| Command | What it does |
+|---|---|
+| `npm run validate` | Prints the flight-by-flight comparison table |
+| `npm run calibrate` | Refits the two calibration numbers and reports leave-one-out error |
+| `npm test` | Runs the physics, scenario and accuracy tests |
+
+**How the model was calibrated.** An early version of the model read about **92% too high** on average against this table. Two numbers were then fitted to it: a scale factor for the cruise-altitude dose rate (0.295) and the polar-to-equatorial ratio (3.9). The latitude effect is also assumed to fade toward sea level, and climb and descent are modelled with a simple altitude profile.
+
+**Results, 21 flights of 3 hours or more** (table's maximum flight level used as cruise altitude, 150 sfu solar flux):
+
+| | Mean error | Worst flight | Average bias | Within ±15% |
+|---|---|---|---|---|
+| End to end (AeroDose estimates air time) | **11.5%** | 31% | +2% | 13 of 21 |
+| Dose model only (FAA air time supplied) | 11.7% | 35% | +1% | 14 of 21 |
+| Leave-one-out (each flight excluded from its own fit) | 12.7% | n/a | n/a | n/a |
+
+**What this means, honestly:**
+- Because the fit used this same table, the first two rows show how well the fit holds, not independent validation. The leave-one-out row is the fairer estimate for flights the fit has not seen.
+- AeroDose is typically within about 12% of CARI-7, but **individual flights can be off by up to about 35%**, mostly very long, high-altitude flights (for example New York to Tokyo at FL430).
+- The model is **not** accurate to ±15% on every flight, and the original goal of 80% of flights within ±15% was not met (62%).
+- The FAA table gives city pairs, a maximum flight level and an assumed solar condition. AeroDose uses one cruise altitude, a chosen airport per city, and F10.7 = 150 sfu, so some of the difference is from these assumptions, not the physics.
+- Flights under 3 hours are shown in the full table (`npm run validate`) but are dominated by climb and descent, which the model only approximates.
+- For regulatory or medical use, run the official FAA CARI-7 software.
 
 ### Sources
 1. FAA CARI-7/7A — https://www.faa.gov/data_research/research/med_humanfacs/aeromedical/radiobiology/cari7
@@ -119,7 +148,7 @@ aerodose/
 │   │   ├── AppHeader.jsx    # Top navigation bar
 │   │   ├── FlightParameters.jsx  # Left pane — inputs
 │   │   ├── TelemetryPanel.jsx    # Results: KPIs, chart, map, table
-│   │   ├── MethodologyPanel.jsx  # Physics explainer
+│   │   ├── ImpactPanel.jsx       # Real-world impact + exposure simulator
 │   │   ├── RouteMapEnterprise.jsx # Leaflet map
 │   │   └── AirportField.jsx      # Airport search input
 │   ├── physics/

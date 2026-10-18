@@ -1,57 +1,30 @@
-import { Radio, Cpu } from 'lucide-react';
+import { Plane } from 'lucide-react';
+import { useLiveF107 } from '../hooks/useLiveF107.js';
 
 export default function AppHeader() {
+  const { status, data } = useLiveF107();
   return (
-    <header style={{
-      minHeight: '44px', display: 'flex', alignItems: 'center',
-      justifyContent: 'space-between', padding: '0 16px',
-      background: 'var(--surface-base)',
-      borderBottom: '1px solid var(--border-default)',
-      position: 'sticky', top: 0, zIndex: 100,
-      flexShrink: 0, flexWrap: 'wrap', gap: '8px',
-    }}>
-      {/* Product identity */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-        <Cpu size={14} color="var(--accent-blue)" strokeWidth={1.5} />
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{
-              fontFamily: 'var(--font-mono)', fontSize: '0.78rem', fontWeight: 700,
-              letterSpacing: '0.06em', color: 'var(--text-primary)',
-            }}>AERODOSE</span>
-            <span style={{ color: 'var(--border-strong)', fontSize: '0.75rem' }}>/</span>
-            <span style={{
-              fontFamily: 'var(--font-ui)', fontSize: '0.72rem',
-              color: 'var(--text-secondary)', letterSpacing: '0.03em',
-            }}>Flight Radiation Dosimetry Model</span>
+    <header className="sticky top-0 z-[100] flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-line bg-surface-1 px-4 py-2.5">
+      <div className="flex items-center gap-3 min-w-0">
+        <Plane size={20} className="shrink-0 text-brand-text" aria-hidden="true" />
+        <div className="min-w-0">
+          <div className="flex items-baseline gap-2">
+            <span className="text-lg font-semibold tracking-tight text-fg">AeroDose</span>
+            <span className="text-sm text-fg-soft">Flight radiation estimator</span>
           </div>
-          {/* Civic hook — visible on all screen sizes */}
-          <div style={{
-            fontFamily: 'var(--font-ui)', fontSize: '0.6rem',
-            color: 'var(--text-muted)', letterSpacing: '0.02em', lineHeight: 1.3,
-          }}>
-            Congress mandates FAA aircrew radiation tracking (14&nbsp;CFR&nbsp;§&nbsp;120.109) —&nbsp;AeroDose extends that transparency to every passenger.
-          </div>
+          <p className="hidden text-[0.8125rem] leading-snug text-fg-muted sm:block">
+            The FAA recommends radiation tracking for aircrew (Advisory Circular 120-61B). AeroDose gives every passenger the same transparency.
+          </p>
         </div>
       </div>
 
-      {/* Status indicators — hidden on small screens via .header-status-bar class */}
-      <div className="header-status-bar" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <div className="pulse-dot" />
-          <span style={{
-            fontFamily: 'var(--font-mono)', fontSize: '0.65rem',
-            color: 'var(--text-secondary)', letterSpacing: '0.04em',
-          }}>SOLAR CYCLE&nbsp;25&nbsp;|&nbsp;F10.7:&nbsp;150&nbsp;sfu&nbsp;[DECLINING]</span>
-        </div>
-        <div style={{ height: '16px', width: '1px', background: 'var(--border-default)' }} />
-        <span className="status-badge status-nominal">
-          CARI-7 PARITY v7.x
+      <div className="header-status-bar flex items-center gap-4 text-sm text-fg-soft">
+        <span>
+          Sun today (NOAA){' '}
+          <span className="mono text-fg">
+            {status === 'ready' ? `F10.7 ${data.flux} sfu` : status === 'loading' ? 'loading…' : 'unavailable'}
+          </span>
         </span>
-        <div style={{ height: '16px', width: '1px', background: 'var(--border-default)' }} />
-        <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--text-muted)',
-        }}>ICRP 132 · FAA AC 120-61B</span>
       </div>
     </header>
   );

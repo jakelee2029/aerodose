@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "FAA Advisory Circular 120-61B, In-Flight Radiation Exposure, Table 2",
+    "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-61B.pdf",
+    "date": "2014-11-21",
+    "what": "Effective dose (ICRP 103, column E103) calculated with CARI-7 for 27 single nonstop one-way air carrier flights",
+    "conditions": "ICRU mean solar activity (Jan. 2000), quiet solar conditions (Kp = 0)",
+    "howRead": "Values were transcribed from the FAA PDF's Table 2 on 2026-10-18. Max flight level is the highest altitude on the flight; air time is in hours."
+  },
+  "assumptions": {
+    "f107": 150,
+    "f107Note": "The table gives 'ICRU mean solar activity' rather than an F10.7 value. 150 sfu is AeroDose's default and is an approximation; the model's solar factor spans only 1.00 to 0.82 across 70 to 220 sfu, so this assumption moves results by up to about 18% at the extremes.",
+    "cruiseAltitude": "AeroDose uses one cruise altitude per flight. Max flight level is used, which slightly overstates real flights that spend less time at their peak altitude.",
+    "airports": "The table names cities, not airports. One main airport was chosen per city (Tokyo NRT, London LHR, Chicago ORD, Washington IAD, New York JFK)."
+  },
+  "tolerancePercent": 15,
+  "minAirTimeHrForPass": 3,
+  "airports": {
+    "HOU": { "lat": 29.6454, "lon": -95.2789 },
+    "AUS": { "lat": 30.1945, "lon": -97.6699 },
+    "TPA": { "lat": 27.9755, "lon": -82.5332 },
+    "STL": { "lat": 38.7487, "lon": -90.3700 },
+    "TUL": { "lat": 36.1984, "lon": -95.8881 },
+    "MSY": { "lat": 29.9934, "lon": -90.2580 },
+    "SAT": { "lat": 29.5337, "lon": -98.4698 },
+    "SJU": { "lat": 18.4394, "lon": -66.0018 },
+    "IAD": { "lat": 38.9531, "lon": -77.4565 }
+  },
+  "flights": [
+    { "origin": "HOU", "destination": "AUS", "flightLevel": 200, "airTimeHr": 0.5,  "cari7Usv": 0.19 },
+    { "origin": "MIA", "destination": "TPA", "flightLevel": 240, "airTimeHr": 0.6,  "cari7Usv": 0.41 },
+    { "origin": "STL", "destination": "TUL", "flightLevel": 350, "airTimeHr": 0.9,  "cari7Usv": 1.41 },
+    { "origin": "TPA", "destination": "STL", "flightLevel": 310, "airTimeHr": 2.0,  "cari7Usv": 4.06 },
+    { "origin": "MSY", "destination": "SAT", "flightLevel": 390, "airTimeHr": 1.2,  "cari7Usv": 2.71 },
+    { "origin": "LAX", "destination": "HNL", "flightLevel": 350, "airTimeHr": 5.2,  "cari7Usv": 12.2 },
+    { "origin": "JFK", "destination": "SJU", "flightLevel": 370, "airTimeHr": 3.0,  "cari7Usv": 8.12 },
+    { "origin": "HNL", "destination": "LAX", "flightLevel": 400, "airTimeHr": 5.1,  "cari7Usv": 13.5 },
+    { "origin": "LAX", "destination": "NRT", "flightLevel": 400, "airTimeHr": 11.7, "cari7Usv": 35.1 },
+    { "origin": "NRT", "destination": "LAX", "flightLevel": 370, "airTimeHr": 8.8,  "cari7Usv": 26.9 },
+    { "origin": "IAD", "destination": "LAX", "flightLevel": 350, "airTimeHr": 4.7,  "cari7Usv": 15.1 },
+    { "origin": "JFK", "destination": "ORD", "flightLevel": 390, "airTimeHr": 1.8,  "cari7Usv": 6.60 },
+    { "origin": "LIS", "destination": "JFK", "flightLevel": 390, "airTimeHr": 6.5,  "cari7Usv": 22.4 },
+    { "origin": "LHR", "destination": "DFW", "flightLevel": 390, "airTimeHr": 9.7,  "cari7Usv": 33.2 },
+    { "origin": "SEA", "destination": "IAD", "flightLevel": 370, "airTimeHr": 4.1,  "cari7Usv": 16.4 },
+    { "origin": "DFW", "destination": "LHR", "flightLevel": 370, "airTimeHr": 8.5,  "cari7Usv": 29.7 },
+    { "origin": "ORD", "destination": "SFO", "flightLevel": 390, "airTimeHr": 3.8,  "cari7Usv": 14.7 },
+    { "origin": "SEA", "destination": "ANC", "flightLevel": 350, "airTimeHr": 3.4,  "cari7Usv": 12.4 },
+    { "origin": "SFO", "destination": "ORD", "flightLevel": 410, "airTimeHr": 3.8,  "cari7Usv": 15.6 },
+    { "origin": "JFK", "destination": "SEA", "flightLevel": 390, "airTimeHr": 4.9,  "cari7Usv": 20.2 },
+    { "origin": "LHR", "destination": "JFK", "flightLevel": 370, "airTimeHr": 6.8,  "cari7Usv": 27.3 },
+    { "origin": "JFK", "destination": "NRT", "flightLevel": 430, "airTimeHr": 13.0, "cari7Usv": 55.1 },
+    { "origin": "NRT", "destination": "JFK", "flightLevel": 410, "airTimeHr": 12.2, "cari7Usv": 50.7 },
+    { "origin": "LHR", "destination": "LAX", "flightLevel": 390, "airTimeHr": 10.5, "cari7Usv": 44.6 },
+    { "origin": "ORD", "destination": "LHR", "flightLevel": 370, "airTimeHr": 7.3,  "cari7Usv": 30.8 },
+    { "origin": "LHR", "destination": "ORD", "flightLevel": 390, "airTimeHr": 7.8,  "cari7Usv": 34.0 },
+    { "origin": "ATH", "destination": "JFK", "flightLevel": 410, "airTimeHr": 9.4,  "cari7Usv": 44.6 }
+  ]
+}

@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
+    "test": "node --test \"tests/*.test.js\"",
+    "validate": "node validation/run.mjs",
+    "calibrate": "node validation/calibrate.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

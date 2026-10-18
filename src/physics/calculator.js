@@ -5,8 +5,15 @@
  * total effective dose for a given flight.
  */
 
-import { doseRateUsvHr, geographicToGeomagneticLat } from './doseModel.js';
+import { doseRateUsvHr, geographicToGeomagneticLat, CALIBRATION } from './doseModel.js';
 import { sampleGreatCircle, greatCircleDistanceNm, estimateFlightTimeHr } from './greatCircle.js';
+
+// Simple flight profile: altitude rises (and later falls) in a straight line over this many hours.
+// A jet typically needs 20 to 30 minutes to reach 35,000+ ft. Short flights never reach cruise
+// altitude, so each phase is capped at this share of the flight.
+const CLIMB_DESCENT_HR = 0.4;
+const CLIMB_DESCENT_SHARE_MAX = 0.4;
+const SUBSTEPS = 12;
 
 /**
  * Calculate the radiation dose for a flight.
@@ -16,8 +23,11 @@ import { sampleGreatCircle, greatCircleDistanceNm, estimateFlightTimeHr } from '
  * @param {{lat: number, lon: number, name: string}} params.destination
  * @param {number} params.altFt - Cruise altitude in feet (default 37000)
  * @param {number} [params.solarF10_7] - Solar flux (default 150)
+ * @param {number} [params.flightTimeHr] - Known air time in hours; if omitted it is estimated from distance
+ * @param {{cruiseScale: number, polarFactor: number}} [params.calibration] - Override the fitted calibration (used by `npm run calibrate`)
  * @returns {{
- *   totalDoseUsv: number,
+ *   totalDoseUsv: number,   climb and descent included
+ *   cruiseOnlyDoseUsv: number,   if the full cruise rate applied for the whole flight (older behavior)
  *   totalDoseMsv: number,
  *   flightTimeHr: number,
  *   distanceNm: number,
@@ -26,9 +36,10 @@ import { sampleGreatCircle, greatCircleDistanceNm, estimateFlightTimeHr } from '
  *   context: Object
  * }}
  */
-export function calculateFlightDose({ origin, destination, altFt = 37000, solarF10_7 = 150 }) {
+export function calculateFlightDose({ origin, destination, altFt = 37000, solarF10_7 = 150, flightTimeHr: timeOverrideHr, calibration = CALIBRATION }) {
   const distNm = greatCircleDistanceNm(origin.lat, origin.lon, destination.lat, destination.lon);
-  const flightTimeHr = estimateFlightTimeHr(distNm, altFt);
+  // Optional override, used when validating the dose model against a flight whose real air time is known
+  const flightTimeHr = timeOverrideHr ?? estimateFlightTimeHr(distNm, altFt);
 
   // Sample route at ~150 nm intervals
   const routePoints = sampleGreatCircle(origin.lat, origin.lon, destination.lat, destination.lon, 150);
@@ -36,19 +47,29 @@ export function calculateFlightDose({ origin, destination, altFt = 37000, solarF
   // Calculate dose at each waypoint
   const waypoints = routePoints.map(pt => {
     const geomagLat = geographicToGeomagneticLat(pt.lat, pt.lon);
-    const doseRate = doseRateUsvHr(altFt, geomagLat, solarF10_7);
+    const doseRate = doseRateUsvHr(altFt, geomagLat, solarF10_7, calibration);
     return { ...pt, geomagLat, doseRate };
   });
 
-  // Integrate dose along route (trapezoidal integration in time)
-  // Each segment's time = (fraction of total distance) * total flight time
-  // Dose contribution = avg dose rate of segment * segment time
+  // Integrate dose along the route in time. Each segment's time = (fraction of route) * flight time.
+  // The aircraft is lower, and the dose rate much smaller, during climb and descent, so each segment
+  // is split into substeps and the altitude at each substep follows a simple flight profile.
+  const climbHr = Math.min(CLIMB_DESCENT_HR, CLIMB_DESCENT_SHARE_MAX * flightTimeHr);
   let totalDoseUsv = 0;
+  let cruiseOnlyDoseUsv = 0; // same route with the cruise rate held for the whole flight (for comparison)
   for (let i = 0; i < waypoints.length - 1; i++) {
-    const segFraction = (waypoints[i + 1].fractionAlongRoute - waypoints[i].fractionAlongRoute);
-    const segTimeHr = segFraction * flightTimeHr;
-    const avgSegRate = (waypoints[i].doseRate + waypoints[i + 1].doseRate) / 2;
-    totalDoseUsv += avgSegRate * segTimeHr;
+    const a = waypoints[i], b = waypoints[i + 1];
+    const segTimeHr = (b.fractionAlongRoute - a.fractionAlongRoute) * flightTimeHr;
+    cruiseOnlyDoseUsv += ((a.doseRate + b.doseRate) / 2) * segTimeHr;
+
+    const dt = segTimeHr / SUBSTEPS;
+    for (let j = 0; j < SUBSTEPS; j++) {
+      const f = (j + 0.5) / SUBSTEPS;                       // position within the segment
+      const tHr = (a.fractionAlongRoute + f * (b.fractionAlongRoute - a.fractionAlongRoute)) * flightTimeHr;
+      const alt = altFt * Math.min(1, tHr / climbHr, (flightTimeHr - tHr) / climbHr);
+      const geomagLat = a.geomagLat + f * (b.geomagLat - a.geomagLat);
+      totalDoseUsv += doseRateUsvHr(Math.max(0, alt), geomagLat, solarF10_7, calibration) * dt;
+    }
   }
 
   const avgDoseRateUsvHr = totalDoseUsv / flightTimeHr;
@@ -59,6 +80,7 @@ export function calculateFlightDose({ origin, destination, altFt = 37000, solarF
 
   return {
     totalDoseUsv,
+    cruiseOnlyDoseUsv,
     totalDoseMsv,
     flightTimeHr,
     distanceNm: distNm,

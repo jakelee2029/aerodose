@@ -37,16 +37,16 @@ export default function AirportField({ id, label, value, onChange }) {
         value={query} onChange={handleInput}
         onFocus={() => { if (query) { const r = searchAirports(query); setSuggestions(r); setOpen(r.length > 0); } }}
         autoComplete="off" spellCheck={false} maxLength={24}
-        style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}
+        style={{ textTransform: 'uppercase', letterSpacing: '0.04em' }}
         aria-label={label} aria-autocomplete="list" aria-expanded={open}
       />
       {/* Metadata under input */}
       {value && (
         <div style={{
-          marginTop: '4px', fontSize: '0.68rem', color: 'var(--text-muted)',
-          fontFamily: 'var(--font-mono)', lineHeight: 1.35,
+          marginTop: '6px', fontSize: '0.8125rem', color: 'var(--text-secondary)', lineHeight: 1.4,
         }}>
-          {value.name} &nbsp;|&nbsp; {value.lat.toFixed(4)}° {value.lon.toFixed(4)}° &nbsp;|&nbsp; {value.country}
+          {value.name}, {value.country}
+          <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}> · {value.lat.toFixed(2)}°, {value.lon.toFixed(2)}°</span>
         </div>
       )}
       {open && suggestions.length > 0 && (
@@ -54,7 +54,7 @@ export default function AirportField({ id, label, value, onChange }) {
           position: 'absolute', top: 'calc(100% + 2px)', left: 0, right: 0, zIndex: 300,
           background: 'var(--surface-base)', border: '1px solid var(--border-strong)',
           borderRadius: 'var(--radius)', overflow: 'hidden',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+          boxShadow: 'var(--shadow-popover)',
         }}>
           {suggestions.map(a => (
             <button key={a.iata} role="option" onClick={() => select(a)} style={{
@@ -69,12 +69,12 @@ export default function AirportField({ id, label, value, onChange }) {
             >
               <span style={{
                 fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '0.82rem',
-                color: 'var(--accent-blue)', minWidth: '38px', letterSpacing: '0.04em',
+                color: 'var(--accent-blue-text)', minWidth: '38px', letterSpacing: '0.04em',
               }}>{a.iata}</span>
               <span>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-primary)', fontFamily: 'var(--font-ui)' }}>{a.name}</div>
-                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginTop: '1px' }}>
-                  {a.lat.toFixed(3)}° {a.lon.toFixed(3)}° &nbsp;·&nbsp; {a.city}
+                <div style={{ fontSize: '0.875rem', color: 'var(--text-primary)', fontFamily: 'var(--font-ui)' }}>{a.name}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginTop: '1px' }}>
+                  {a.city}
                 </div>
               </span>
             </button>
