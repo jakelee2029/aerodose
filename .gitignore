@@ -5,4 +5,5 @@ dist/
 *.local
 .DS_Store
 Thumbs.db
-AI_USAGE_LOG.md
+.gstack/
+
