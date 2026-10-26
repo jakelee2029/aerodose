@@ -1,12 +1,26 @@
 # AeroDose - Cosmic Ray Flight Radiation Estimator
 
-> **Congressional App Challenge 2026** · NY-06 (Rep. Grace Meng) · Built by Jake Lee (Forest Hills High School, 10th grade)
+> **Congressional App Challenge 2026** · District NY-06 (Rep. Grace Meng) · Built by Jake Lee (Forest Hills High School, 10th grade)
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-aerodose.vercel.app-38BDF8?style=flat-square)](https://aerodose.vercel.app)
+[![Live Web App](https://img.shields.io/badge/Live%20Demo-aerodose.vercel.app-38BDF8?style=flat-square&logo=vercel)](https://aerodose.vercel.app)
+[![Video Demonstration](https://img.shields.io/badge/YouTube-Video%20Demonstration-FF0000?style=flat-square&logo=youtube)](https://www.youtube.com/watch?v=EwCVizNz6P4)
 [![GitHub](https://img.shields.io/badge/GitHub-jakelee2029%2Faerodose-24292e?style=flat-square&logo=github)](https://github.com/jakelee2029/aerodose)
 [![Tests: 36 passed](https://img.shields.io/badge/Tests-36%20passed-22C55E?style=flat-square)](tests)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)](LICENSE)
-[![Built with Vite](https://img.shields.io/badge/Built%20with-Vite%208-F59E0B?style=flat-square)](https://vitejs.dev)
+
+---
+
+### 🔗 Submission Quick Links for Judges
+- 🌐 **Live Web Application:** [https://aerodose.vercel.app/](https://aerodose.vercel.app/)
+- 🎬 **Video Demonstration (3 min):** [https://www.youtube.com/watch?v=EwCVizNz6P4](https://www.youtube.com/watch?v=EwCVizNz6P4)
+- 📋 **AI Usage Disclosure & Integrity Log:** [AI_USAGE_LOG.md](AI_USAGE_LOG.md)
+
+---
+
+![AeroDose Application Interface](docs/screenshot.jpg)
+*AeroDose calculating real-time effective dose (26.8 µSv), flight path with Viridis dose-rate heatmap, elevation profile, and NOAA live space weather telemetry for a JFK → LHR transatlantic flight.*
+
+---
 
 Every time you board a commercial flight, you are exposed to cosmic radiation - high-energy particles from deep space that penetrate the atmosphere. At cruising altitude (FL370), you are above 75% of Earth's protective air column. AeroDose makes this invisible exposure visible, using the same physics models referenced by FAA researchers and the ICRP.
 
