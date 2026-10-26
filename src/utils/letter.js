@@ -30,7 +30,7 @@ export function buildLetter({ recipient, name = '', place = '', logTotalUsv = 0,
   const who = name.trim() || '[your name]';
   const where = place.trim() || '[your town]';
 
-  const intro = `My name is ${who} and I am a student in ${where}. For the Congressional App Challenge I built AeroDose (https://aerodose.vercel.app/), a free web app that estimates the cosmic radiation a flight adds, using published FAA and ICRP methods.`;
+  const intro = `My name is ${who} and I am from ${where}. I used the app, AeroDose (https://aerodose.vercel.app/), a free web app that estimates the cosmic radiation a flight adds, using published FAA and ICRP methods.`;
 
   const findings = [
     personalLine({ logTotalUsv, roundTripUsv }),

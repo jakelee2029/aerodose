@@ -1,4 +1,4 @@
-# AI_USAGE_LOG.md — AeroDose
+# AI_USAGE_LOG.md - AeroDose
 ## Congressional App Challenge 2026 · District NY-06 · Jake Lee
 
 This document discloses all Artificial Intelligence tool usage in the development of **AeroDose**, in accordance with Congressional App Challenge submission guidelines and academic integrity standards. 
@@ -22,7 +22,7 @@ Per competition rules, AI tools did not constitute the entirety of technical dev
 
 ## 2. Granular Development Breakdown by Phase
 
-### Phase 1 — Scientific Grounding & Physics Model
+### Phase 1 - Scientific Grounding & Physics Model
 | Component / Task | Lead / Contributor | Details & Division of Labor |
 |---|---|---|
 | Authoritative Model Selection | **Jake** | Selected FAA CARI-7 & ICRP Publication 132 after reviewing radiobiology literature (CREDO project & Homola/Wozniak). |
@@ -32,7 +32,7 @@ Per competition rules, AI tools did not constitute the entirety of technical dev
 | Solar Modulation Function ($f_{\text{solar}}$) | **Jake verified** | Linear Forbush modulation based on 10.7 cm solar flux ($F_{10.7}$), verified against ICRP 132 §3.3. |
 | Geodesic Route Waypoints | **AI scaffold** | Haversine distance and great-circle spherical intermediate waypoint interpolation sampled every 150 nautical miles. |
 
-### Phase 2 — Calibration, Rigor & Automated Testing
+### Phase 2 - Calibration, Rigor & Automated Testing
 | Component / Task | Lead / Contributor | Details & Division of Labor |
 |---|---|---|
 | FAA Benchmark Compilation | **Jake** | Transcribed CARI-7 calculated doses for 27 real nonstop flights from FAA Advisory Circular 120-61B, Table 2. |
@@ -41,7 +41,7 @@ Per competition rules, AI tools did not constitute the entirety of technical dev
 | Leave-One-Out Cross-Validation | **AI scaffold, Jake verified** | Executed leave-one-out analysis (12.7% mean error) proving model generalization on unseen flight pairs. |
 | Automated Test Suite (`npm test`) | **AI scaffold, Jake verified** | Created 36 test assertions across `physics.test.js`, `scenarios.test.js`, and `validation.test.js`. |
 
-### Phase 3 — User Interface & Civic Features
+### Phase 3 - User Interface & Civic Features
 | Component / Task | Lead / Contributor | Details & Division of Labor |
 |---|---|---|
 | React 19 + Vite 8 Setup | **AI scaffold** | Initial project scaffolding with Tailwind CSS v4 and vanilla design tokens. |
@@ -52,13 +52,6 @@ Per competition rules, AI tools did not constitute the entirety of technical dev
 | Comparative Risk Meter | **Jake / AI scaffold** | Sourced NCRP 160 and ICRP 103 equivalencies (chest X-rays, banana potassium-40 equivalent doses, daily background). |
 | Civic Action Kit ("Take Action") | **Jake** | Drafted congressional and airline inquiry letter templates referencing 14 CFR § 120.109 and FAA AC 120-61B. |
 | Local Log & Scenarios | **Jake (Logic) / AI (Code)** | Client-side `localStorage` running tally against 1 mSv public guideline; illustrative persona benchmarks. |
-
-### Phase 4 — Presentation & Submission Deck
-| Component / Task | Lead / Contributor | Details & Division of Labor |
-|---|---|---|
-| 3-Minute Video Script & Strategy | **Jake / AI consultation** | Crafted script ensuring strict adherence to all 6 CAC mandatory demonstration requirements. |
-| Deck Generator Script (`build_deck.mjs`) | **AI scaffold, Jake edited** | Programmatic generation of 16:9 widescreen presentation deck (PPTX) and Google Slides script (`.gs`). |
-| Shot List & Voiceover Pacing | **AI assistance, Jake executed** | Timed teleprompter script (396 spoken words, ~2:49 duration) and step-by-step browser recording shot list. |
 
 ---
 
@@ -79,7 +72,7 @@ Per competition rules, AI tools did not constitute the entirety of technical dev
 
 ## 4. Primary Scientific & Reference Sources (Non-AI)
 1. **Federal Aviation Administration (FAA):** CAMI CARI-7 / CARI-7A Computer Program.
-2. **FAA Advisory Circular 120-61B:** *In-Flight Radiation Exposure* (2014) — Table 2 reference data.
+2. **FAA Advisory Circular 120-61B:** *In-Flight Radiation Exposure* (2014) - Table 2 reference data.
 3. **International Commission on Radiological Protection (ICRP):** Publication 132 (2016), *Radiological Protection from Cosmic Radiation in Aviation*.
 4. **ICRP:** Publication 103 (2007), *The 2007 Recommendations of the International Commission on Radiological Protection*.
 5. **Lindborg, L. et al. (2004):** *Cosmic Radiation Exposure of Aircraft Crew: Compilation of Experimental and Calculated Data*, Radiation Protection Dosimetry 110(1-4):417–422.
@@ -87,3 +80,4 @@ Per competition rules, AI tools did not constitute the entirety of technical dev
 7. **National Oceanic and Atmospheric Administration (NOAA):** National Geophysical Data Center World Magnetic Model (WMM 2020–2025).
 8. **NOAA Space Weather Prediction Center (SWPC):** Penticton 10.7 cm Solar Radio Flux real-time data service.
 9. **OurAirports.com:** Public domain open airport coordinate database.
+10. **Homola, P. et al. / CREDO Collaboration (2020):** *Cosmic-Ray Extremely Distributed Observatory*, *Symmetry* 12(11):1835, [doi:10.3390/sym12111835](https://www.mdpi.com/2073-8994/12/11/1835).

@@ -1,4 +1,4 @@
-# AeroDose — Cosmic Ray Flight Radiation Estimator
+# AeroDose - Cosmic Ray Flight Radiation Estimator
 
 > **Congressional App Challenge 2026** · NY-06 (Rep. Grace Meng) · Built by Jake Lee (Forest Hills High School, 10th grade)
 
@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)](LICENSE)
 [![Built with Vite](https://img.shields.io/badge/Built%20with-Vite%208-F59E0B?style=flat-square)](https://vitejs.dev)
 
-Every time you board a commercial flight, you are exposed to cosmic radiation — high-energy particles from deep space that penetrate the atmosphere. At cruising altitude (FL370), you are above 75% of Earth's protective air column. AeroDose makes this invisible exposure visible, using the same physics models referenced by FAA researchers and the ICRP.
+Every time you board a commercial flight, you are exposed to cosmic radiation - high-energy particles from deep space that penetrate the atmosphere. At cruising altitude (FL370), you are above 75% of Earth's protective air column. AeroDose makes this invisible exposure visible, using the same physics models referenced by FAA researchers and the ICRP.
 
 ---
 
@@ -78,13 +78,13 @@ FAA Advisory Circular 120-61B, Table 2 lists CARI-7 doses for 27 real nonstop fl
 - For regulatory compliance or medical evaluation, always refer to the official FAA CARI-7/7A software.
 
 ### Sources
-1. FAA CARI-7/7A — https://www.faa.gov/data_research/research/med_humanfacs/aeromedical/radiobiology/cari7
-2. FAA Advisory Circular 120-61B — In-Flight Radiation Exposure
-3. ICRP Publication 132 (2016) — Radiological Protection from Cosmic Radiation in Aviation
-4. Lindborg, L. et al. (2004) — Radiat. Prot. Dosim. 110:417-422
-5. NCRP Report No. 160 (2009) — Ionizing Radiation Exposure of the Population of the United States
-6. NOAA NGDC — World Magnetic Model 2020-2025
-7. OurAirports.com — Public domain airport coordinate data
+1. FAA CARI-7/7A - https://www.faa.gov/data_research/research/med_humanfacs/aeromedical/radiobiology/cari7
+2. FAA Advisory Circular 120-61B - In-Flight Radiation Exposure
+3. ICRP Publication 132 (2016) - Radiological Protection from Cosmic Radiation in Aviation
+4. Lindborg, L. et al. (2004) - Radiat. Prot. Dosim. 110:417-422
+5. NCRP Report No. 160 (2009) - Ionizing Radiation Exposure of the Population of the United States
+6. NOAA NGDC - World Magnetic Model 2020-2025
+7. OurAirports.com - Public domain airport coordinate data
 
 > **No physics values were fabricated.** Every formula and benchmark traces to a citable public source.
 
@@ -241,5 +241,5 @@ See [AI_USAGE_LOG.md](AI_USAGE_LOG.md) for the complete disclosure log and divis
 
 ## 📄 License
 
-MIT — see [LICENSE](LICENSE)
+MIT - see [LICENSE](LICENSE)
 
