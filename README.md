@@ -107,6 +107,7 @@ AeroDose includes an integrated **Civic Action Kit** (`ActionKit.jsx`). Users ca
 
 | Layer | Technology | Details |
 |---|---|---|
+| **Language** | JavaScript (ES2024) + JSX | Modern native ES modules, pure mathematical models, zero external math dependencies |
 | **Framework** | React 19 + Vite 8 | Ultra-fast client-side reactive interface |
 | **Styling** | Tailwind CSS v4 + Vanilla CSS | Dark mode design system with custom CSS tokens |
 | **Data Visualization** | Recharts | Responsive SVG dose-rate elevation profile charts |
