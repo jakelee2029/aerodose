@@ -4,9 +4,9 @@ import { calculateFlightDose } from '../physics/calculator.js';
 
 const PRESETS = [
   { label: 'JFK → LHR', origin: { iata:'JFK', name:'John F. Kennedy International', city:'New York, NY', lat:40.6413, lon:-73.7781 }, dest: { iata:'LHR', name:'London Heathrow', city:'London, UK', lat:51.4775, lon:-0.4614 } },
-  { label: 'LAX → NRT', origin: { iata:'LAX', name:'Los Angeles International', city:'Los Angeles, CA', lat:33.9425, lon:-118.4081 }, dest: { iata:'NRT', name:'Narita International', city:'Tokyo', lat:35.7720, lon:140.3929 } },
+  { label: 'LGA → SFO', origin: { iata:'LGA', name:'LaGuardia Airport', city:'New York, NY', lat:40.7769, lon:-73.8740 }, dest: { iata:'SFO', name:'San Francisco International', city:'San Francisco, CA', lat:37.6213, lon:-122.3790 } },
   { label: 'JFK → LAX', origin: { iata:'JFK', name:'John F. Kennedy International', city:'New York, NY', lat:40.6413, lon:-73.7781 }, dest: { iata:'LAX', name:'Los Angeles International', city:'Los Angeles, CA', lat:33.9425, lon:-118.4081 } },
-  { label: 'ANC → FRA', origin: { iata:'ANC', name:'Ted Stevens Anchorage International', city:'Anchorage, AK', lat:61.1743, lon:-149.9963 }, dest: { iata:'FRA', name:'Frankfurt Airport', city:'Frankfurt', lat:50.0379, lon:8.5622 } },
+  { label: 'LGA → SEA', origin: { iata:'LGA', name:'LaGuardia Airport', city:'New York, NY', lat:40.7769, lon:-73.8740 }, dest: { iata:'SEA', name:'Seattle-Tacoma International', city:'Seattle, WA', lat:47.4502, lon:-122.3088 } },
   { label: 'SYD → LAX', origin: { iata:'SYD', name:'Sydney Airport', city:'Sydney', lat:-33.9399, lon:151.1753 }, dest: { iata:'LAX', name:'Los Angeles International', city:'Los Angeles, CA', lat:33.9425, lon:-118.4081 } },
 ];
 
