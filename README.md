@@ -18,7 +18,7 @@
 ---
 
 ![AeroDose Application Interface](docs/screenshot.jpg)
-*AeroDose calculating real-time effective dose (26.8 µSv), flight path with Viridis dose-rate heatmap, elevation profile, and NOAA live space weather telemetry for a JFK → LHR transatlantic flight.*
+*AeroDose calculating real-time effective dose (60.6 µSv), plain-language risk verdict, multi-scale comparison meter (bananas, chest X-rays, and the 1 mSv public limit), and NOAA live space weather telemetry for a long-haul JFK → SIN route.*
 
 ---
 
